@@ -1,0 +1,17 @@
+<app-header />
+
+<main class="legal">
+  <div class="container legal__inner">
+    <h1 class="legal__title">{{ t().privacy.title }}</h1>
+    <p class="legal__intro">{{ t().privacy.intro }}</p>
+
+    @for (section of t().privacy.sections; track section.heading) {
+      <section class="legal__section">
+        <h2 class="legal__heading">{{ section.heading }}</h2>
+        <p class="legal__content">{{ section.content }}</p>
+      </section>
+    }
+  </div>
+</main>
+
+<app-footer />

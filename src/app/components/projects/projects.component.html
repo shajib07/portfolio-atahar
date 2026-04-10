@@ -1,0 +1,40 @@
+<section class="projects" id="projects">
+  <div class="container">
+
+    <div appScrollAnimation>
+      <span class="section-label">{{ t().projects.label }}</span>
+      <h2 class="section-title">{{ t().projects.title }}</h2>
+      <p class="projects__subtitle">{{ t().projects.subtitle }}</p>
+    </div>
+
+    <ul class="projects__list">
+      @for (project of t().projects.items; track project.name) {
+        <li
+          class="projects__item"
+          (click)="openProject(project.name)"
+          role="link"
+          tabindex="0"
+          (keydown.enter)="openProject(project.name)"
+          appScrollAnimation
+        >
+          <div class="projects__item-left">
+            <span class="projects__name">{{ project.name }}</span>
+          </div>
+
+          <div class="projects__item-right">
+            <span class="projects__tech">
+              @for (tech of project.tech; track tech; let last = $last) {
+                <span class="projects__tech-item">{{ tech }}</span>
+                @if (!last) { <span class="projects__sep">|</span> }
+              }
+            </span>
+
+            <svg class="projects__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

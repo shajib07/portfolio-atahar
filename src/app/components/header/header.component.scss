@@ -1,0 +1,222 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--header-height);
+  background: transparent;
+  transition: background 100ms ease, box-shadow 100ms ease;
+
+  &--scrolled {
+    background: rgba(10, 26, 20, 0.92);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(74, 222, 128, 0.12);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 24px;
+  }
+
+  /* ---- Language toggle (left) ---- */
+  &__lang-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    padding: 3px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  &__lang-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 11px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 100ms ease, color 100ms ease;
+
+    &--active {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    &:not(&--active):hover {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  &__lang-toggle--mobile { display: none; }
+
+  /* ---- Nav (centre) ---- */
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 100ms ease;
+    position: relative;
+    letter-spacing: 0.02em;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 100ms ease;
+    }
+
+    &:hover {
+      color: #ffffff;
+      &::after { width: 100%; }
+    }
+  }
+
+  &__close { display: none; }
+
+  /* ---- Logo (right) ---- */
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--accent);
+    transition: opacity 100ms ease;
+
+    &:hover { opacity: 0.8; }
+  }
+
+  &__logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  &__logo-name {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---- Burger ---- */
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 2px;
+      transition: transform 100ms ease, opacity 100ms ease;
+    }
+
+    &--open {
+      span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      span:nth-child(2) { opacity: 0; }
+      span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    }
+  }
+
+  /* ---- Mobile overlay ---- */
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: -1;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .header {
+    &__nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(280px, 80vw);
+      height: 100dvh;
+      background: var(--bg-card);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 80px 32px 40px;
+      gap: 24px;
+      transition: right 200ms ease;
+      z-index: 1001;
+      border-left: 1px solid rgba(74, 222, 128, 0.12);
+
+      &--open { right: 0; }
+    }
+
+    &__close {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+
+      span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: rgba(255,255,255,0.75);
+
+        &:first-child { transform: rotate(45deg) translate(5px, 5px); }
+        &:last-child  { transform: rotate(-45deg) translate(5px, -5px); }
+      }
+    }
+
+    &__link {
+      font-size: 1rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    &__lang-toggle { display: none; }
+    &__lang-toggle--mobile { display: flex; margin-top: 8px; }
+    &__burger { display: flex; }
+  }
+}

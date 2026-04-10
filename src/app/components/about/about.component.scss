@@ -1,0 +1,125 @@
+.about {
+  padding: 100px 0;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* ---- Photo ---- */
+  &__photo-wrap {
+    position: relative;
+  }
+
+  &__photo {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--bg-card);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* Overlay if no image */
+    &-placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      font-family: 'Space Mono', monospace;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.3;
+    }
+
+    &--error .about__photo-placeholder,
+    &:not(:has(img[src])) .about__photo-placeholder {
+      display: flex;
+    }
+
+    &--error img {
+      visibility: hidden;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: linear-gradient(to top, var(--bg-primary), transparent);
+    }
+  }
+
+  /* ---- Content ---- */
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__description {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+  }
+
+  /* ---- Bullets ---- */
+  &__bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__bullet {
+    display: flex;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  &__bullet-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 3px;
+    color: var(--accent);
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .about {
+    &__inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    &__photo {
+      aspect-ratio: 4/3;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .about { padding: 72px 0; }
+}

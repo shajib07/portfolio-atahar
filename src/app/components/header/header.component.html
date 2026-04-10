@@ -1,0 +1,81 @@
+<header class="header" [class.header--scrolled]="isScrolled()">
+  <div class="container header__inner">
+
+    <!-- Left: language toggle -->
+    <div class="header__lang-toggle">
+      <button
+        class="header__lang-btn"
+        [class.header__lang-btn--active]="langService.currentLang() === 'en'"
+        (click)="langService.setLanguage('en')"
+      >EN</button>
+      <button
+        class="header__lang-btn"
+        [class.header__lang-btn--active]="langService.currentLang() === 'de'"
+        (click)="langService.setLanguage('de')"
+      >DE</button>
+    </div>
+
+    <!-- Centre: nav links -->
+    <nav class="header__nav" [class.header__nav--open]="isMenuOpen()">
+      <!-- Mobile close -->
+      <button class="header__close" (click)="closeMenu()" aria-label="Close menu">
+        <span></span><span></span>
+      </button>
+
+      <button class="header__link" (click)="scrollToSection('about')">
+        {{ t().nav.aboutMe }}
+      </button>
+      <button class="header__link" (click)="scrollToSection('skills')">
+        {{ t().nav.skills }}
+      </button>
+      <button class="header__link" (click)="scrollToSection('projects')">
+        {{ t().nav.projects }}
+      </button>
+      <button class="header__link" (click)="scrollToSection('contact')">
+        {{ t().nav.contact }}
+      </button>
+
+      <!-- Language toggle inside mobile drawer -->
+      <div class="header__lang-toggle header__lang-toggle--mobile">
+        <button
+          class="header__lang-btn"
+          [class.header__lang-btn--active]="langService.currentLang() === 'en'"
+          (click)="langService.setLanguage('en'); closeMenu()"
+        >EN</button>
+        <button
+          class="header__lang-btn"
+          [class.header__lang-btn--active]="langService.currentLang() === 'de'"
+          (click)="langService.setLanguage('de'); closeMenu()"
+        >DE</button>
+      </div>
+    </nav>
+
+    <!-- Right: logo -->
+    <a class="header__logo" routerLink="/" (click)="closeMenu()" aria-label="Home">
+      <div class="header__logo-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <polyline points="4,28 4,8 16,4 28,8 28,28" stroke="currentColor" stroke-width="2" fill="none"/>
+          <polyline points="10,28 10,16 16,12 22,16 22,28" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <div class="header__logo-text">
+        <span class="header__logo-name">Atahar</span>
+        <span class="header__logo-name">Hossain</span>
+      </div>
+    </a>
+
+    <!-- Burger (mobile) -->
+    <button
+      class="header__burger"
+      (click)="toggleMenu()"
+      [class.header__burger--open]="isMenuOpen()"
+      aria-label="Open menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  @if (isMenuOpen()) {
+    <div class="header__overlay" (click)="closeMenu()"></div>
+  }
+</header>
