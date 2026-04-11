@@ -2,17 +2,38 @@
   padding: 100px 0;
 
   &__subtitle {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.7;
-    max-width: 520px;
-    margin-bottom: 40px;
+    font-family: "Karla", sans-serif;
+    font-weight: 400; // Regular
+    font-style: normal;
+
+    font-size: 1.125rem; // 18px
+    line-height: 1.2; // 120%
+    letter-spacing: 0;
+
+    text-align: justify;
+
+    margin: 0;
   }
 
+  &__main-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
   /* ---- List ---- */
   &__list {
     list-style: none;
-    border-top: 1px solid var(--border-subtle);
+    width: calc(100% * 2 / 3);
+    max-width: 100%;
+    align-self: flex-start;
+
+    border-top: 1px solid #3dcfb6;
   }
 
   &__item {
@@ -20,25 +41,44 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1px solid #3dcfb6;
     cursor: pointer;
-    transition: padding-left var(--transition), background var(--transition);
+    transition:
+      padding-left var(--transition),
+      background var(--transition);
     gap: 16px;
 
     &:hover {
       padding-left: 12px;
 
-      .projects__name  { color: var(--accent); }
-      .projects__arrow { opacity: 1; transform: translateX(4px); }
+      .projects__name {
+        color: var(--accent);
+      }
+      .projects__arrow {
+        opacity: 1;
+        transform: translateX(4px);
+      }
     }
   }
 
-  &__item-left { display: flex; align-items: center; gap: 12px; }
-  &__item-right { display: flex; align-items: center; gap: 16px; }
+  &__item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  &__item-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 
   &__name {
-    font-size: 1rem;
-    font-weight: 600;
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0;
     color: var(--text-primary);
     transition: color var(--transition);
   }
@@ -52,20 +92,31 @@
   }
 
   &__tech-item {
-    font-size: 0.8rem;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0;
     color: var(--text-secondary);
   }
 
   &__sep {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--accent);
   }
 
   &__arrow {
     color: var(--accent);
     opacity: 0;
     flex-shrink: 0;
-    transition: opacity var(--transition), transform var(--transition);
+    transition:
+      opacity var(--transition),
+      transform var(--transition);
   }
 }
 
@@ -74,13 +125,347 @@
   .projects {
     padding: 72px 0;
 
+    &__list {
+      width: 100%;
+    }
+
     &__item {
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
     }
 
-    &__item-right { padding-left: 0; }
-    &__arrow { display: none; }
+    &__item-right {
+      padding-left: 0;
+    }
+    &__arrow {
+      display: none;
+    }
+  }
+}
+
+/* ---- Project detail dialog (Figma v2) ---- */
+.projects-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 15, 12, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: projectsModalFadeIn 0.25s ease;
+
+  &__panel {
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    max-height: min(90vh, 760px);
+    overflow: auto;
+    border-radius: 28px;
+    padding: 40px 40px 36px;
+    background: linear-gradient(
+      145deg,
+      #12302a 0%,
+      #0a1f18 42%,
+      #0d261c 100%
+    );
+    border: 1px solid rgba(61, 207, 182, 0.28);
+    box-shadow:
+      0 28px 90px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition:
+      background var(--transition),
+      color var(--transition);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 40px;
+    align-items: start;
+    padding-top: 8px;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  &__index {
+    display: block;
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+
+  &__title {
+    margin: 0;
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  &__about-heading {
+    margin: 0;
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: 0;
+    color: var(--accent);
+  }
+
+  &__description {
+    margin: 0;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--text-primary);
+  }
+
+  &__tech-list {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 20px;
+  }
+
+  &__tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__tech-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--bg-card);
+
+    &[data-tech='js'] {
+      background: #f7df1e;
+    }
+
+    &[data-tech='html'] {
+      background: #e34f26;
+    }
+
+    &[data-tech='css'] {
+      background: #264de4;
+    }
+
+    &[data-tech='angular'] {
+      background: #dd0031;
+    }
+
+    &[data-tech='ts'] {
+      background: #3178c6;
+    }
+
+    &[data-tech='firebase'] {
+      background: #ffca28;
+    }
+
+    &[data-tech='default'] {
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  &__tech-label {
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--text-primary);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: "Karla", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      border-color var(--transition),
+      color var(--transition),
+      background var(--transition);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(61, 207, 182, 0.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+
+  &__btn-icon {
+    flex-shrink: 0;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
+    min-width: 0;
+  }
+
+  &__media {
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-card);
+    aspect-ratio: 4 / 3;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__img-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    padding: 24px;
+    background: linear-gradient(160deg, var(--bg-card) 0%, #0a1a14 100%);
+    border: 1px dashed rgba(61, 207, 182, 0.35);
+  }
+
+  &__img-fallback-text {
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: center;
+  }
+
+  &__next {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: "Karla", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent);
+    cursor: pointer;
+    transition: opacity var(--transition);
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+  }
+}
+
+@keyframes projectsModalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-modal {
+    &__panel {
+      padding: 32px 24px 28px;
+      border-radius: 22px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    &__right {
+      align-items: stretch;
+    }
+
+    &__next {
+      align-self: flex-end;
+    }
   }
 }

@@ -32,12 +32,21 @@ export interface SkillTranslations {
 export interface Project {
   name: string;
   tech: string[];
+  description: string;
+  image: string;
+  githubUrl: string;
+  liveUrl: string;
 }
 
 export interface ProjectTranslations {
   label: string;
   title: string;
   subtitle: string;
+  detailAboutTitle: string;
+  nextProject: string;
+  githubLabel: string;
+  liveLabel: string;
+  closeDialog: string;
   items: Project[];
 }
 

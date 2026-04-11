@@ -45,10 +45,39 @@ export const de: Translations = {
     title: 'Ausgewählte Projekte',
     subtitle:
       'Erkunden Sie eine Auswahl meiner Arbeit – interagieren Sie mit den Projekten, um meine Fähigkeiten in Aktion zu sehen.',
+    detailAboutTitle: 'Worum geht es in diesem Projekt?',
+    nextProject: 'Nächstes Projekt',
+    githubLabel: 'GitHub',
+    liveLabel: 'Live test',
+    closeDialog: 'Projektdetails schließen',
     items: [
-      { name: 'Join', tech: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'] },
-      { name: 'El Pollo Loco', tech: ['HTML', 'CSS', 'JavaScript'] },
-      { name: 'DA Bubble', tech: ['Angular', 'Firebase', 'TypeScript'] },
+      {
+        name: 'Join',
+        tech: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'],
+        description:
+          'Ein Slack-inspiriertes Echtzeit-Team-Messenger mit Angular. Kanäle anlegen, Direktnachrichten austauschen und zusammenarbeiten – mit Authentifizierung über Firebase.',
+        image: '/assets/img/projects/join.jpg',
+        githubUrl: 'https://github.com',
+        liveUrl: 'https://github.com',
+      },
+      {
+        name: 'El Pollo Loco',
+        tech: ['JavaScript', 'HTML', 'CSS'],
+        description:
+          'Jump-’n’-Run- und Wurfspiel mit objektorientiertem Ansatz. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen.',
+        image: '/assets/img/projects/el-pollo-loco.jpg',
+        githubUrl: 'https://github.com',
+        liveUrl: 'https://github.com',
+      },
+      {
+        name: 'DA Bubble',
+        tech: ['Angular', 'Firebase', 'TypeScript'],
+        description:
+          'Eine responsive Chat-Anwendung mit Kanälen und Threads – gebaut, um skalierbare Angular-Architektur und Echtzeitdaten mit Firebase zu üben.',
+        image: '/assets/img/projects/da-bubble.jpg',
+        githubUrl: 'https://github.com',
+        liveUrl: 'https://github.com',
+      },
     ],
   },
 
