@@ -1,35 +1,46 @@
 <section class="contact" id="contact">
   <div class="container contact__inner">
-
     <!-- Left content -->
-    <div class="contact__info" appScrollAnimation>
-      <span class="section-label">{{ t().contact.label }}</span>
-      <h2 class="section-title contact__title">
-        {{ t().contact.title }}
-      </h2>
+    <div class="contact__info-wrap" appScrollAnimation>
+      <div class="contact__info-header">
+        <span class="section-label">{{ t().contact.label }}</span>
+        <h2 class="section-title contact__title">
+          {{ t().contact.title }}
+        </h2>
+      </div>
 
-      <p class="contact__subtitle">{{ t().contact.subtitle }}</p>
-      <p class="contact__description">{{ t().contact.description }}</p>
-      <p class="contact__cta">
-        {{ t().contact.ctaText }}
-        <a class="contact__cta-link" (click)="scrollToTop()">
-          {{ t().contact.ctaLink }}
-        </a>
-      </p>
+      <div class="contact__info-body">
+        <p class="contact__subtitle">{{ t().contact.subtitle }}</p>
+        <p class="contact__description">{{ t().contact.description }}</p>
+        <p class="contact__cta">
+          {{ t().contact.ctaText }}
+          <a class="contact__cta-link" (click)="scrollToTop()">
+            {{ t().contact.ctaLink }}
+          </a>
+        </p>
+      </div>
     </div>
 
     <!-- Right: Form -->
     <div class="contact__form-wrap" appScrollAnimation>
-
       <!-- Success state -->
-      @if (status() === 'success') {
+      @if (status() === "success") {
         <div class="contact__success">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="9 12 11 14 15 10"/>
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="9 12 11 14 15 10" />
           </svg>
           <p>{{ t().contact.successMsg }}</p>
-          <button class="contact__reset" (click)="resetForm()">Send another</button>
+          <button class="contact__reset" (click)="resetForm()">
+            Send another
+          </button>
         </div>
       } @else {
         <form
@@ -52,7 +63,9 @@
               autocomplete="name"
             />
             @if (showError(nameCtrl)) {
-              <span class="contact__error" role="alert">{{ getError(nameCtrl) }}</span>
+              <span class="contact__error" role="alert">{{
+                getError(nameCtrl)
+              }}</span>
             }
           </div>
 
@@ -70,7 +83,9 @@
               autocomplete="email"
             />
             @if (showError(emailCtrl)) {
-              <span class="contact__error" role="alert">{{ getError(emailCtrl) }}</span>
+              <span class="contact__error" role="alert">{{
+                getError(emailCtrl)
+              }}</span>
             }
           </div>
 
@@ -87,7 +102,9 @@
               rows="4"
             ></textarea>
             @if (showError(messageCtrl)) {
-              <span class="contact__error" role="alert">{{ getError(messageCtrl) }}</span>
+              <span class="contact__error" role="alert">{{
+                getError(messageCtrl)
+              }}</span>
             }
           </div>
 
@@ -116,13 +133,12 @@
             type="submit"
             [disabled]="form.invalid || status() === 'loading'"
           >
-            @if (status() === 'loading') {
+            @if (status() === "loading") {
               <span class="contact__spinner"></span>
             } @else {
               {{ t().contact.submitBtn }}
             }
           </button>
-
         </form>
       }
     </div>

@@ -7,8 +7,8 @@
   --bg-secondary: #0f2219;
   --bg-card: #152e22;
   --bg-card-hover: #1a3829;
-  --accent: #4ade80;
-  --accent-hover: #22c55e;
+  --accent: #3dcfb6;
+  --accent-hover: #3dcfb6;
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
@@ -34,7 +34,8 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Karla", sans-serif;
+  font-weight: 400;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
@@ -99,7 +100,7 @@ img {
 .section-title {
   font-family: "Fira Code", monospace;
   font-weight: 700; // Bold
-  font-style: bold;
+  font-style: normal;
 
   font-size: 4rem; // 64px
   line-height: 1; // 100%
