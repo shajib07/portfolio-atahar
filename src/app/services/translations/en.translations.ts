@@ -14,7 +14,7 @@ export const en: Translations = {
     contactMe: 'Contact me',
     availableLabel: 'Available for remote work',
     ticker:
-      'Available for remote work  •  Frontend Developer  •  Angular Expert  •  Open to opportunities  •  ',
+      '  Available for remote work  •  Frontend Developer  •  Angular Expert  •  Open to opportunities  •',
   },
 
   about: {

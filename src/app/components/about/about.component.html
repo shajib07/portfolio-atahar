@@ -1,6 +1,5 @@
 <section class="about" id="about">
   <div class="container about__inner">
-
     <!-- Photo -->
     <div class="about__photo-wrap" appScrollAnimation>
       <div class="about__photo" [class.about__photo--error]="photoLoadFailed">
@@ -17,23 +16,34 @@
     </div>
 
     <!-- Text content -->
-    <div class="about__content" appScrollAnimation>
-      <span class="section-label">{{ t().about.label }}</span>
-      <h2 class="section-title">{{ t().about.title }}</h2>
-      <p class="about__description">{{ t().about.description }}</p>
 
-      <ul class="about__bullets">
-        @for (bullet of t().about.bullets; track bullet) {
-          <li class="about__bullet">
-            <span class="about__bullet-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </span>
-            <span>{{ bullet }}</span>
-          </li>
-        }
-      </ul>
+    <div class="about__content-wrap" appScrollAnimation>
+      <span class="section-label">{{ t().about.label }}</span>
+
+      <div class="about__content">
+        <h2 class="section-title">{{ t().about.title }}</h2>
+        <p class="section-description">{{ t().about.description }}</p>
+
+        <ul class="about__bullets">
+          @for (bullet of t().about.bullets; track bullet) {
+            <li class="about__bullet">
+              <span class="about__bullet-icon" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span>{{ bullet }}</span>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </section>
