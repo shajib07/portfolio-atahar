@@ -65,7 +65,7 @@ export const en: Translations = {
         tech: ['JavaScript', 'HTML', 'CSS'],
         description:
           'Jump, run and throw game based on object-oriented approach. Help Pepe to find coins and tabasco salsa to fight against the crazy hen.',
-        image: '/assets/img/projects/el-pollo-loco.jpg',
+        image: '/assets/img/projects/elpolloloco.jpg',
         githubUrl: 'https://github.com',
         liveUrl: 'https://github.com',
       },
@@ -74,7 +74,7 @@ export const en: Translations = {
         tech: ['Angular', 'Firebase', 'TypeScript'],
         description:
           'A responsive chat application with channels and threads, built to practice scalable Angular architecture and real-time data with Firebase.',
-        image: '/assets/img/projects/da-bubble.jpg',
+        image: '/assets/img/projects/dabubble.jpg',
         githubUrl: 'https://github.com',
         liveUrl: 'https://github.com',
       },
