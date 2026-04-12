@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 import { LanguageService } from '../../services/language.service';
+import { TechIconComponent } from '../tech-icon/tech-icon.component';
 
 interface Skill {
   name: string;
@@ -11,7 +12,7 @@ interface Skill {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule, ScrollAnimationDirective],
+  imports: [CommonModule, ScrollAnimationDirective, TechIconComponent],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })

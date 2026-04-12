@@ -90,11 +90,9 @@
           <ul class="projects-modal__tech-list">
             @for (tech of t().projects.items[openIndex()!].tech; track tech) {
               <li class="projects-modal__tech-item">
-                <span
-                  class="projects-modal__tech-icon"
-                  [attr.data-tech]="techSlug(tech)"
-                  aria-hidden="true"
-                ></span>
+                <div class="projects-modal__tech-icon" aria-hidden="true">
+                  <app-tech-icon [icon]="techIconKey(tech)" />
+                </div>
                 <span class="projects-modal__tech-label">{{ tech }}</span>
               </li>
             }

@@ -166,12 +166,7 @@
     overflow: auto;
     border-radius: 28px;
     padding: 40px 40px 36px;
-    background: linear-gradient(
-      145deg,
-      #12302a 0%,
-      #0a1f18 42%,
-      #0d261c 100%
-    );
+    background: linear-gradient(145deg, #12302a 0%, #0a1f18 42%, #0d261c 100%);
     border: 1px solid rgba(61, 207, 182, 0.28);
     box-shadow:
       0 28px 90px rgba(0, 0, 0, 0.55),
@@ -228,7 +223,7 @@
     display: block;
     font-family: "Fira Code", monospace;
     font-weight: 700;
-    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-size: clamp(3rem, 8vw, 8rem);
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--accent);
@@ -238,9 +233,9 @@
     margin: 0;
     font-family: "Fira Code", monospace;
     font-weight: 700;
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 0.8;
+    letter-spacing: -0.03em;
     color: var(--text-primary);
   }
 
@@ -248,7 +243,7 @@
     margin: 0;
     font-family: "Fira Code", monospace;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 1.25;
     letter-spacing: 0;
     color: var(--accent);
@@ -258,7 +253,7 @@
     margin: 0;
     font-family: "Karla", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.2;
     letter-spacing: 0;
     color: var(--text-primary);
@@ -276,49 +271,25 @@
   &__tech-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.1rem;
   }
 
+  /* Smaller than skills grid; SVGs use `currentColor` → accent fill/stroke */
   &__tech-icon {
-    width: 32px;
-    height: 32px;
+    width: 2.5rem;
+    height: 2.5rem;
     flex-shrink: 0;
-    border-radius: 8px;
-    background: var(--bg-card);
-
-    &[data-tech='js'] {
-      background: #f7df1e;
-    }
-
-    &[data-tech='html'] {
-      background: #e34f26;
-    }
-
-    &[data-tech='css'] {
-      background: #264de4;
-    }
-
-    &[data-tech='angular'] {
-      background: #dd0031;
-    }
-
-    &[data-tech='ts'] {
-      background: #3178c6;
-    }
-
-    &[data-tech='firebase'] {
-      background: #ffca28;
-    }
-
-    &[data-tech='default'] {
-      background: rgba(255, 255, 255, 0.12);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: var(--accent);
   }
 
   &__tech-label {
     font-family: "Karla", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.2;
     letter-spacing: 0;
     color: var(--text-primary);
@@ -415,13 +386,14 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: auto;
+    margin-top: 4rem;
     padding: 0;
     border: none;
     background: none;
     font-family: "Karla", sans-serif;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.2;
     color: var(--accent);
     cursor: pointer;
     transition: opacity var(--transition);

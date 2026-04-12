@@ -11,11 +11,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 import { LanguageService } from '../../services/language.service';
+import { TechIconComponent } from '../tech-icon/tech-icon.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ScrollAnimationDirective],
+  imports: [CommonModule, ScrollAnimationDirective, TechIconComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
@@ -31,13 +32,14 @@ export class ProjectsComponent {
 
   private readonly closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
 
-  techSlug(tech: string): string {
+  /** Same icon keys as `skills` / `app-tech-icon` (html5, css3, …). */
+  techIconKey(tech: string): string {
     const map: Record<string, string> = {
-      JavaScript: 'js',
-      HTML: 'html',
-      CSS: 'css',
+      HTML: 'html5',
+      CSS: 'css3',
+      JavaScript: 'javascript',
+      TypeScript: 'typescript',
       Angular: 'angular',
-      TypeScript: 'ts',
       Firebase: 'firebase',
     };
     return map[tech] ?? 'default';
