@@ -4,7 +4,7 @@
     <div class="about__photo-wrap" appScrollAnimation>
       <div class="about__photo" [class.about__photo--error]="photoLoadFailed">
         <img
-          src="/assets/img/profile.jpg"
+          src="assets/img/profile.jpg"
           alt="Atahar Hossain"
           (error)="photoLoadFailed = true"
           (load)="photoLoadFailed = false"
