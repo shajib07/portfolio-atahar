@@ -1,12 +1,14 @@
 <footer class="footer">
   <div class="container footer__inner">
-
     <!-- Logo + info -->
     <div class="footer__brand">
       <div class="footer__logo">
-        <span class="footer__logo-badge">AH</span>
+        <img
+          src="assets/img/logo.png"
+          alt="Atahar Hossain logo"
+          class="footer__logo-img"
+        />
         <div>
-          <span class="footer__logo-name">Atahar Hossain</span>
           <span class="footer__role">{{ t().footer.role }}</span>
           <span class="footer__location">{{ t().footer.location }}</span>
         </div>
@@ -23,28 +25,40 @@
         target="_blank"
         rel="noopener noreferrer"
         class="footer__link"
-      >{{ t().footer.github }}</a>
+        >{{ t().footer.github }}</a
+      >
 
       <a
         href="https://linkedin.com"
         target="_blank"
         rel="noopener noreferrer"
         class="footer__link"
-      >{{ t().footer.linkedin }}</a>
+        >{{ t().footer.linkedin }}</a
+      >
 
-      <a
-        href="mailto:shajib.ruet07@gmail.com"
-        class="footer__link"
-      >{{ t().footer.email }}</a>
+      <a href="mailto:shajib.ruet07@gmail.com" class="footer__link">{{
+        t().footer.email
+      }}</a>
 
       <a routerLink="/imprint" class="footer__link">{{ t().footer.imprint }}</a>
     </nav>
   </div>
 
   <!-- Back to top -->
-  <button class="footer__top-btn" (click)="scrollToTop()" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M12 19V5M5 12l7-7 7 7"/>
+  <button
+    class="footer__top-btn"
+    (click)="scrollToTop()"
+    aria-label="Back to top"
+  >
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M12 19V5M5 12l7-7 7 7" />
     </svg>
   </button>
 </footer>

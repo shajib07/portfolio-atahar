@@ -126,7 +126,7 @@ export const en: Translations = {
   footer: {
     role: 'Web Developer',
     location: 'Germany',
-    copyright: '© Atahar Hossain 2025',
+    copyright: '© Atahar Hossain 2026',
     github: 'Github',
     linkedin: 'LinkedIn',
     email: 'Email',
@@ -141,7 +141,7 @@ export const en: Translations = {
   },
 
   imprint: {
-    title: 'Legal Notice (Imprint)',
+    title: 'Legal Notice',
     sections: [
       {
         heading: 'Legal Notice',
@@ -176,7 +176,7 @@ export const en: Translations = {
       {
         heading: 'Indemnity',
         content:
-          'You agree to indemnify, defend and hold harmless us, the listed students, the Developer Akademie, and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to your use of Portfolio and/or your breach of this Legal Notice.\n\nFor any questions or notices, please contact us at shajib.ruet07@gmail.com.\n\nDate: July 26, 2025',
+          'You agree to indemnify, defend and hold harmless us, the listed students, the Developer Akademie, and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to your use of Portfolio and/or your breach of this Legal Notice.\n\nFor any questions or notices, please contact us at shajib.ruet07@gmail.com.\n\nDate: July 26, 2026',
       },
     ],
   },

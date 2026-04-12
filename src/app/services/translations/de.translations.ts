@@ -141,7 +141,7 @@ export const de: Translations = {
   },
 
   imprint: {
-    title: 'Rechtliche Hinweise (Impressum)',
+    title: 'Rechtliche Hinweise',
     sections: [
       {
         heading: 'Rechtlicher Hinweis',

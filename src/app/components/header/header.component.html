@@ -1,24 +1,31 @@
 <header class="header" [class.header--scrolled]="isScrolled()">
   <div class="container header__inner">
-
     <!-- Left: language toggle -->
     <div class="header__lang-toggle">
       <button
         class="header__lang-btn"
         [class.header__lang-btn--active]="langService.currentLang() === 'en'"
         (click)="langService.setLanguage('en')"
-      >EN</button>
+      >
+        EN
+      </button>
       <button
         class="header__lang-btn"
         [class.header__lang-btn--active]="langService.currentLang() === 'de'"
         (click)="langService.setLanguage('de')"
-      >DE</button>
+      >
+        DE
+      </button>
     </div>
 
     <!-- Centre: nav links -->
     <nav class="header__nav" [class.header__nav--open]="isMenuOpen()">
       <!-- Mobile close -->
-      <button class="header__close" (click)="closeMenu()" aria-label="Close menu">
+      <button
+        class="header__close"
+        (click)="closeMenu()"
+        aria-label="Close menu"
+      >
         <span></span><span></span>
       </button>
 
@@ -41,27 +48,31 @@
           class="header__lang-btn"
           [class.header__lang-btn--active]="langService.currentLang() === 'en'"
           (click)="langService.setLanguage('en'); closeMenu()"
-        >EN</button>
+        >
+          EN
+        </button>
         <button
           class="header__lang-btn"
           [class.header__lang-btn--active]="langService.currentLang() === 'de'"
           (click)="langService.setLanguage('de'); closeMenu()"
-        >DE</button>
+        >
+          DE
+        </button>
       </div>
     </nav>
 
     <!-- Right: logo -->
-    <a class="header__logo" routerLink="/" (click)="closeMenu()" aria-label="Home">
-      <div class="header__logo-icon">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-          <polyline points="4,28 4,8 16,4 28,8 28,28" stroke="currentColor" stroke-width="2" fill="none"/>
-          <polyline points="10,28 10,16 16,12 22,16 22,28" stroke="currentColor" stroke-width="2" fill="none"/>
-        </svg>
-      </div>
-      <div class="header__logo-text">
-        <span class="header__logo-name">Atahar</span>
-        <span class="header__logo-name">Hossain</span>
-      </div>
+    <a
+      class="header__logo"
+      href="/"
+      (click)="onLogoClick($event)"
+      aria-label="Home"
+    >
+      <img
+        src="assets/img/logo.png"
+        alt="Atahar Hossain logo"
+        class="header__logo-img"
+      />
     </a>
 
     <!-- Burger (mobile) -->

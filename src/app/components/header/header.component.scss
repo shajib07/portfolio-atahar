@@ -124,24 +124,21 @@
     }
   }
 
-  &__logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
+  &__logo-img {
+    width: 120px; // adjust size
+    height: auto;
+    object-fit: contain;
   }
 
-  &__logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.25;
+  .header__logo-img {
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
   }
 
-  &__logo-name {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.02em;
+  .header__logo:hover .header__logo-img {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 
   /* ---- Burger ---- */

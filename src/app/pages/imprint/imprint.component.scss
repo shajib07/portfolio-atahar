@@ -7,13 +7,17 @@
   }
 
   &__title {
-    font-family: 'Space Mono', monospace;
+    font-family: "Fira Code", monospace;
+    font-weight: 700; // Bold
+    font-style: normal;
+
+    font-size: 4rem; // 64px
+    line-height: 1.2; // 120%
+    letter-spacing: 0;
+
     color: var(--accent);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
     margin-bottom: 48px;
     padding-bottom: 24px;
-    border-bottom: 1px solid var(--border-subtle);
   }
 
   &__section {
@@ -21,23 +25,32 @@
   }
 
   &__heading {
-    font-size: 1rem;
-    font-weight: 700;
+    font-family: "Karla", sans-serif;
+    font-weight: 700; // Regular
+    font-style: bold;
+
+    font-size: 1.125rem; // 18px
+    line-height: 1.2; // 120%
+    letter-spacing: 0;
     color: var(--text-primary);
     margin-bottom: 12px;
-    padding-left: 16px;
-    border-left: 3px solid var(--accent);
   }
 
   &__content {
+    font-family: "Karla", sans-serif;
+    font-weight: 400; // Regular
+    font-style: normal;
+
+    font-size: 1rem; // 18px
+    line-height: 1.2; // 120%
+    letter-spacing: 0;
+
     color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.8;
-    white-space: pre-line;
-    padding-left: 19px;
   }
 }
 
 @media (max-width: 480px) {
-  .legal { padding: 56px 0; }
+  .legal {
+    padding: 56px 0;
+  }
 }
