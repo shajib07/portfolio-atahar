@@ -3,7 +3,7 @@
    ============================================= */
 
 :root {
-  --bg-primary: #0a1a14;
+  --bg-primary: #000000;
   --bg-secondary: #0f2219;
   --bg-card: #152e22;
   --bg-card-hover: #1a3829;
@@ -162,6 +162,48 @@ img {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---- Legal pages (imprint / privacy): diagonal green wash (matches hero) ---- */
+main.legal {
+  position: relative;
+  overflow-x: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(
+      to bottom left,
+      rgba(74, 222, 128, 0.24) 0%,
+      rgba(74, 222, 128, 0.12) 28%,
+      rgba(74, 222, 128, 0.06) 44%,
+      rgba(74, 222, 128, 0.02) 52%,
+      transparent 58%
+    );
+    animation: legalGlowPulse 4s ease-in-out infinite;
+  }
+
+  .legal__inner {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes legalGlowPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
 }
 
 /* ---- Scrollbar ---- */
