@@ -5,7 +5,9 @@
   width: 100%;
   height: var(--header-height);
   background: transparent;
-  transition: background 100ms ease, box-shadow 100ms ease;
+  transition:
+    background 100ms ease,
+    box-shadow 100ms ease;
 
   &--scrolled {
     background: rgba(10, 26, 20, 0.92);
@@ -35,15 +37,17 @@
   &__lang-btn {
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.55);
-    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    font-family: "Space Mono", monospace;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 4px 11px;
     border-radius: 50px;
     cursor: pointer;
-    transition: background 100ms ease, color 100ms ease;
+    transition:
+      background 100ms ease,
+      color 100ms ease;
 
     &--active {
       background: var(--accent);
@@ -55,7 +59,9 @@
     }
   }
 
-  &__lang-toggle--mobile { display: none; }
+  &__lang-toggle--mobile {
+    display: none;
+  }
 
   /* ---- Nav (centre) ---- */
   &__nav {
@@ -69,17 +75,20 @@
   &__link {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.9rem;
-    font-weight: 500;
+    color: #ffffff;
+    font-family: "Fira Code", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
     cursor: pointer;
     padding: 4px 0;
     transition: color 100ms ease;
     position: relative;
-    letter-spacing: 0.02em;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -2px;
       left: 0;
@@ -91,11 +100,15 @@
 
     &:hover {
       color: #ffffff;
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 
-  &__close { display: none; }
+  &__close {
+    display: none;
+  }
 
   /* ---- Logo (right) ---- */
   &__logo {
@@ -106,7 +119,9 @@
     color: var(--accent);
     transition: opacity 100ms ease;
 
-    &:hover { opacity: 0.8; }
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__logo-icon {
@@ -123,7 +138,7 @@
   }
 
   &__logo-name {
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 0.02em;
@@ -143,15 +158,23 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: rgba(255,255,255,0.75);
+      background: rgba(255, 255, 255, 0.75);
       border-radius: 2px;
-      transition: transform 100ms ease, opacity 100ms ease;
+      transition:
+        transform 100ms ease,
+        opacity 100ms ease;
     }
 
     &--open {
-      span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-      span:nth-child(2) { opacity: 0; }
-      span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
     }
   }
 
@@ -183,7 +206,9 @@
       z-index: 1001;
       border-left: 1px solid rgba(74, 222, 128, 0.12);
 
-      &--open { right: 0; }
+      &--open {
+        right: 0;
+      }
     }
 
     &__close {
@@ -202,10 +227,14 @@
         display: block;
         width: 20px;
         height: 2px;
-        background: rgba(255,255,255,0.75);
+        background: rgba(255, 255, 255, 0.75);
 
-        &:first-child { transform: rotate(45deg) translate(5px, 5px); }
-        &:last-child  { transform: rotate(-45deg) translate(5px, -5px); }
+        &:first-child {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+        &:last-child {
+          transform: rotate(-45deg) translate(5px, -5px);
+        }
       }
     }
 
@@ -215,8 +244,15 @@
       text-align: left;
     }
 
-    &__lang-toggle { display: none; }
-    &__lang-toggle--mobile { display: flex; margin-top: 8px; }
-    &__burger { display: flex; }
+    &__lang-toggle {
+      display: none;
+    }
+    &__lang-toggle--mobile {
+      display: flex;
+      margin-top: 8px;
+    }
+    &__burger {
+      display: flex;
+    }
   }
 }

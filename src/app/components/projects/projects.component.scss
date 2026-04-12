@@ -26,37 +26,152 @@
     flex-direction: column;
     gap: 1.125rem;
   }
-  /* ---- List ---- */
+  /* ---- List + hover preview ---- */
+  &__list-row {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.75rem);
+    align-items: stretch;
+    align-self: flex-start;
+    width: 100%;
+    max-width: 100%;
+  }
+
   &__list {
     list-style: none;
-    width: calc(100% * 2 / 3);
+    width: 100%;
     max-width: 100%;
-    align-self: flex-start;
+    margin: 0;
+    padding: 0;
 
     border-top: 1px solid #3dcfb6;
+  }
+
+  &__preview {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    pointer-events: none;
+  }
+
+  &__preview-stack {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+
+  &__preview-visual {
+    position: relative;
+    width: 100%;
+    /* Room for striped layer past the frame so layout height matches the mock. */
+    padding: 0 12px 12px 0;
+  }
+
+  /* Teal “card” with diagonal stripes (design mock), behind the screenshot */
+  &__preview-deco {
+    position: absolute;
+    right: -12px;
+    bottom: -12px;
+    width: 90%;
+    height: 90%;
+    border-radius: 14px;
+    z-index: 0;
+    color: var(--accent);
+    background-image: repeating-linear-gradient(
+      -32deg,
+      transparent 0,
+      transparent 8px,
+      #3dcfb64d 8px,
+      #3dcfb64d 10px
+    );
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  &__preview-frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-card);
+    aspect-ratio: 4 / 3;
+    border: 1px solid rgba(61, 207, 182, 0.22);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    animation: projectsListPreviewIn 0.22s ease;
+  }
+
+  &__preview-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__preview-fallback {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 1.25rem;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--bg-card) 0%, #0a1a14 100%);
+    border: 1px dashed rgba(61, 207, 182, 0.35);
+    animation: projectsListPreviewIn 0.22s ease;
+  }
+
+  &__preview-fallback-text {
+    font-family: "Fira Code", monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: center;
   }
 
   &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px ;
     border-bottom: 1px solid #3dcfb6;
     cursor: pointer;
     transition:
-      padding-left var(--transition),
-      background var(--transition);
+      background var(--transition),
+      color var(--transition);
     gap: 16px;
 
-    &:hover {
-      padding-left: 12px;
+    &:hover,
+    &:focus-within {
+      background: #3dcfb64d;
 
       .projects__name {
-        color: var(--accent);
+        color: rgba(255, 255, 255, 0.98);
       }
-      .projects__arrow {
+
+      .projects__tech-item {
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .projects__sep {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .projects__link-icon {
         opacity: 1;
-        transform: translateX(4px);
+        color: rgba(255, 255, 255, 0.95);
       }
     }
   }
@@ -110,24 +225,44 @@
     color: var(--accent);
   }
 
-  &__arrow {
+  &__link-icon {
+    flex-shrink: 0;
     color: var(--accent);
     opacity: 0;
-    flex-shrink: 0;
     transition:
       opacity var(--transition),
-      transform var(--transition);
+      color var(--transition);
   }
 }
 
 /* ---- Responsive ---- */
+@keyframes projectsListPreviewIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects {
+    &__list-row {
+      grid-template-columns: 1fr;
+    }
+
+    &__preview {
+      display: none;
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .projects {
     padding: 72px 0;
-
-    &__list {
-      width: 100%;
-    }
 
     &__item {
       flex-direction: column;
@@ -138,7 +273,7 @@
     &__item-right {
       padding-left: 0;
     }
-    &__arrow {
+    &__link-icon {
       display: none;
     }
   }
