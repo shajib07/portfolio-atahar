@@ -141,20 +141,42 @@ export const de: Translations = {
   },
 
   imprint: {
-    title: 'Impressum',
+    title: 'Rechtliche Hinweise (Impressum)',
     sections: [
       {
-        heading: 'Angaben gemäß § 5 TMG',
-        content: 'Atahar Hossain\nDeutschland\nE-Mail: shajib.ruet07@gmail.com',
-      },
-      {
-        heading: 'Verantwortlich für den Inhalt',
-        content: 'Atahar Hossain',
-      },
-      {
-        heading: 'Haftungsausschluss',
+        heading: 'Rechtlicher Hinweis',
         content:
-          'Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Wir übernehmen jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.',
+          'Atahar Hossain\nDeutschland\n\nE-Mail: shajib.ruet07@gmail.com',
+      },
+      {
+        heading: 'Annahme der Bedingungen',
+        content:
+          'Durch den Zugriff auf und die Nutzung von Portfolio (dem „Produkt“) erkennen Sie die folgenden Bedingungen sowie etwaige ergänzende Richtlinien, Leitfäden oder Änderungen an, die Ihnen von Zeit zu Zeit mitgeteilt werden können. Wir, die genannten Studierenden, können diese Bedingungen jederzeit ohne gesonderte Ankündigung anpassen.',
+      },
+      {
+        heading: 'Umfang und Eigentum am Produkt',
+        content:
+          'Portfolio wurde im Rahmen eines Studierenden-Gruppenprojekts in einem Web-Development-Bootcamp der Developer Akademie GmbH entwickelt. Es dient Lehrzwecken und ist nicht für umfangreiche private oder geschäftliche Nutzung vorgesehen. Entsprechend können wir keine durchgängige Verfügbarkeit, Zuverlässigkeit, Richtigkeit oder sonstige Qualitätsaspekte dieses Produkts garantieren.\n\nDas Design von Portfolio ist Eigentum der Developer Akademie GmbH. Eine unbefugte Nutzung, Vervielfältigung, Bearbeitung, Verbreitung oder Nachbildung des Designs ist untersagt.',
+      },
+      {
+        heading: 'Eigentumsrechte',
+        content:
+          'Abgesehen vom Design der Developer Akademie GmbH behalten wir, die genannten Studierenden, alle Rechte an Portfolio, einschließlich urheberrechtlich geschützter Inhalte, Marken und sonstiger Schutzrechte.',
+      },
+      {
+        heading: 'Nutzung des Produkts',
+        content:
+          'Portfolio ist ausschließlich für rechtmäßige Zwecke und im Einklang mit geltendem Recht bestimmt. Eine Nutzung für rechtswidrige Aktivitäten oder zur Belästigung, Schädigung, Bedrohung oder Einschüchterung anderer Personen ist untersagt. Sie sind allein verantwortlich für Ihre Interaktionen mit anderen Nutzerinnen und Nutzern von Portfolio.',
+      },
+      {
+        heading: 'Gewährleistungsausschluss und Haftungsbeschränkung',
+        content:
+          'Portfolio wird „wie besehen“ ohne jede ausdrückliche oder stillschweigende Gewährleistung bereitgestellt, einschließlich, aber nicht beschränkt auf stillschweigende Gewährleistungen der Marktgängigkeit, Eignung für einen bestimmten Zweck und Nichtverletzung von Rechten. In keinem Fall haften wir, die genannten Studierenden oder die Developer Akademie, für direkte, indirekte, zufällige, besondere, Folge- oder Beispielschäden – einschließlich entgangenen Gewinns, Goodwill, Nutzung, Daten oder sonstiger immaterieller Verluste –, selbst wenn auf die Möglichkeit solcher Schäden hingewiesen wurde, die aus oder im Zusammenhang mit der Nutzung oder Leistung von Portfolio entstehen.',
+      },
+      {
+        heading: 'Freistellung',
+        content:
+          'Sie verpflichten sich, uns, die genannten Studierenden, die Developer Akademie sowie unsere verbundenen Unternehmen, Partner, leitenden Angestellten, Geschäftsführer, Beauftragten und Mitarbeitenden von allen Ansprüchen, Forderungen, Verlusten, Schäden, Kosten oder Haftungen (einschließlich angemessener Rechtskosten) freizustellen, die aus oder im Zusammenhang mit Ihrer Nutzung von Portfolio und/oder Ihrer Verletzung dieses Rechtlichen Hinweises entstehen.\n\nFragen oder Mitteilungen richten Sie bitte an shajib.ruet07@gmail.com.\n\nStand: 26. Juli 2025',
       },
     ],
   },
