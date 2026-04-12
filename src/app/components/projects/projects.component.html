@@ -8,7 +8,11 @@
       <p class="projects__subtitle">{{ t().projects.subtitle }}</p>
 
       <ul class="projects__list">
-        @for (project of t().projects.items; track project.name; let idx = $index) {
+        @for (
+          project of t().projects.items;
+          track project.name;
+          let idx = $index
+        ) {
           <li
             class="projects__item"
             (click)="openProjectDetail(idx)"
@@ -66,65 +70,58 @@
       [attr.aria-labelledby]="'project-dialog-title'"
       (click)="$event.stopPropagation()"
     >
-      <button
-        #closeBtn
-        type="button"
-        class="projects-modal__close"
-        (click)="closeModal()"
-        [attr.aria-label]="t().projects.closeDialog"
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M18 6L6 18M6 6l12 12" />
-        </svg>
-      </button>
-
       <div class="projects-modal__grid">
         <div class="projects-modal__left">
-          <span class="projects-modal__index" aria-hidden="true">{{ projectNumber(openIndex()!) }}</span>
-          <h2 id="project-dialog-title" class="projects-modal__title">
-            {{ t().projects.items[openIndex()!].name }}
-          </h2>
-          <h3 class="projects-modal__about-heading">{{ t().projects.detailAboutTitle }}</h3>
-          <p class="projects-modal__description">{{ t().projects.items[openIndex()!].description }}</p>
+          <div class="projects-modal__left-header">
+            <span class="projects-modal__index" aria-hidden="true">{{
+              projectNumber(openIndex()!)
+            }}</span>
+            <h2 id="project-dialog-title" class="projects-modal__title">
+              {{ t().projects.items[openIndex()!].name }}
+            </h2>
+          </div>
 
-          <ul class="projects-modal__tech-list">
-            @for (tech of t().projects.items[openIndex()!].tech; track tech) {
-              <li class="projects-modal__tech-item">
-                <div class="projects-modal__tech-icon" aria-hidden="true">
-                  <app-tech-icon [icon]="techIconKey(tech)" />
-                </div>
-                <span class="projects-modal__tech-label">{{ tech }}</span>
-              </li>
-            }
-          </ul>
+          <div class="projects-modal__left-body">
+            <h3 class="projects-modal__about-heading">
+              {{ t().projects.detailAboutTitle }}
+            </h3>
+            <p class="projects-modal__description">
+              {{ t().projects.items[openIndex()!].description }}
+            </p>
 
-          <div class="projects-modal__actions">
-            <a
-              class="projects-modal__btn"
-              [href]="t().projects.items[openIndex()!].githubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ t().projects.githubLabel }}
-              <svg class="projects-modal__btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M7 17L17 7M7 7h10v10" />
-              </svg>
-            </a>
-            <a
-              class="projects-modal__btn"
-              [href]="t().projects.items[openIndex()!].liveUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ t().projects.liveLabel }}
-              <svg class="projects-modal__btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M7 17L17 7M7 7h10v10" />
-              </svg>
-            </a>
+            <ul class="projects-modal__tech-list">
+              @for (tech of t().projects.items[openIndex()!].tech; track tech) {
+                <li class="projects-modal__tech-item">
+                  <div class="projects-modal__tech-icon" aria-hidden="true">
+                    <app-tech-icon [icon]="techIconKey(tech)" />
+                  </div>
+                  <span class="projects-modal__tech-label">{{ tech }}</span>
+                </li>
+              }
+            </ul>
           </div>
         </div>
 
         <div class="projects-modal__right">
+          <button
+            #closeBtn
+            type="button"
+            class="projects-modal__close"
+            (click)="closeModal()"
+            [attr.aria-label]="t().projects.closeDialog"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
           <div class="projects-modal__media">
             @if (!previewFailed()) {
               <img
@@ -136,13 +133,72 @@
               />
             } @else {
               <div class="projects-modal__img-fallback" aria-hidden="true">
-                <span class="projects-modal__img-fallback-text">{{ t().projects.items[openIndex()!].name }}</span>
+                <span class="projects-modal__img-fallback-text">{{
+                  t().projects.items[openIndex()!].name
+                }}</span>
               </div>
             }
           </div>
-          <button type="button" class="projects-modal__next" (click)="nextProject()">
+        </div>
+
+        <div class="projects-modal__footer">
+          <div class="projects-modal__actions">
+            <a
+              class="projects-modal__btn"
+              [href]="t().projects.items[openIndex()!].githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ t().projects.githubLabel }}
+              <svg
+                class="projects-modal__btn-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </a>
+            <a
+              class="projects-modal__btn"
+              [href]="t().projects.items[openIndex()!].liveUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ t().projects.liveLabel }}
+              <svg
+                class="projects-modal__btn-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </a>
+          </div>
+          <button
+            type="button"
+            class="projects-modal__next"
+            (click)="nextProject()"
+          >
             {{ t().projects.nextProject }}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </button>
