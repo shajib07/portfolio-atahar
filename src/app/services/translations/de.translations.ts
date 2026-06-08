@@ -59,7 +59,7 @@ export const de: Translations = {
         tech: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'],
         description:
           'Ein Slack-inspiriertes Echtzeit-Team-Messenger mit Angular. Kanäle anlegen, Direktnachrichten austauschen und zusammenarbeiten – mit Authentifizierung über Firebase.',
-        image: '/assets/img/projects/join.jpg',
+        image: 'assets/img/projects/join.jpg',
         githubUrl: 'https://github.com',
         liveUrl: 'https://github.com',
       },
@@ -68,7 +68,7 @@ export const de: Translations = {
         tech: ['JavaScript', 'HTML', 'CSS'],
         description:
           'Jump-’n’-Run- und Wurfspiel mit objektorientiertem Ansatz. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen.',
-        image: '/assets/img/projects/el-pollo-loco.jpg',
+        image: 'assets/img/projects/elpolloloco.jpg',
         githubUrl: 'https://github.com',
         liveUrl: 'https://github.com',
       },
@@ -77,7 +77,7 @@ export const de: Translations = {
         tech: ['Angular', 'Firebase', 'TypeScript'],
         description:
           'Eine responsive Chat-Anwendung mit Kanälen und Threads – gebaut, um skalierbare Angular-Architektur und Echtzeitdaten mit Firebase zu üben.',
-        image: '/assets/img/projects/da-bubble.jpg',
+        image: 'assets/img/projects/dabubble.jpg',
         githubUrl: 'https://github.com',
         liveUrl: 'https://github.com',
       },
