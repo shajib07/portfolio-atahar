@@ -39,7 +39,7 @@
           </svg>
           <p>{{ t().contact.successMsg }}</p>
           <button class="contact__reset" (click)="resetForm()">
-            Send another
+            {{ t().contact.sendAnother }}
           </button>
         </div>
       } @else {
@@ -121,8 +121,7 @@
                 {{ t().contact.privacyText }}
                 <a routerLink="/privacy" class="contact__privacy-link">
                   {{ t().contact.privacyLink }}
-                </a>
-                &nbsp;and agree to the processing of my data as outlined.
+                </a>{{ t().contact.privacySuffix }}
               </span>
             </label>
           </div>

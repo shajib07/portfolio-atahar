@@ -23,7 +23,15 @@
     gap: 24px;
   }
 
-  /* ---- Language toggle (left) ---- */
+  /* ---- Right actions (lang + burger) ---- */
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Language toggle ---- */
   &__lang-toggle {
     display: flex;
     align-items: center;
@@ -39,7 +47,7 @@
     border: none;
     color: var(--accent);
     font-family: "Space Mono", monospace;
-    font-size: 0.72rem;
+    font-size: 1rem; // 16px
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 4px 11px;
@@ -110,7 +118,7 @@
     display: none;
   }
 
-  /* ---- Logo (right) ---- */
+  /* ---- Logo (left) ---- */
   &__logo {
     display: flex;
     align-items: center;
@@ -241,7 +249,7 @@
       text-align: left;
     }
 
-    &__lang-toggle {
+    &__actions .header__lang-toggle {
       display: none;
     }
     &__lang-toggle--mobile {

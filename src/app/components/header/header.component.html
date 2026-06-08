@@ -1,22 +1,18 @@
 <header class="header" [class.header--scrolled]="isScrolled()">
   <div class="container header__inner">
-    <!-- Left: language toggle -->
-    <div class="header__lang-toggle">
-      <button
-        class="header__lang-btn"
-        [class.header__lang-btn--active]="langService.currentLang() === 'en'"
-        (click)="langService.setLanguage('en')"
-      >
-        EN
-      </button>
-      <button
-        class="header__lang-btn"
-        [class.header__lang-btn--active]="langService.currentLang() === 'de'"
-        (click)="langService.setLanguage('de')"
-      >
-        DE
-      </button>
-    </div>
+    <!-- Left: logo -->
+    <a
+      class="header__logo"
+      href="/"
+      (click)="onLogoClick($event)"
+      [attr.aria-label]="t().nav.home"
+    >
+      <img
+        src="assets/img/logo.png"
+        alt="Atahar Hossain logo"
+        class="header__logo-img"
+      />
+    </a>
 
     <!-- Centre: nav links -->
     <nav class="header__nav" [class.header__nav--open]="isMenuOpen()">
@@ -24,7 +20,7 @@
       <button
         class="header__close"
         (click)="closeMenu()"
-        aria-label="Close menu"
+        [attr.aria-label]="t().nav.closeMenu"
       >
         <span></span><span></span>
       </button>
@@ -61,29 +57,34 @@
       </div>
     </nav>
 
-    <!-- Right: logo -->
-    <a
-      class="header__logo"
-      href="/"
-      (click)="onLogoClick($event)"
-      aria-label="Home"
-    >
-      <img
-        src="assets/img/logo.png"
-        alt="Atahar Hossain logo"
-        class="header__logo-img"
-      />
-    </a>
+    <!-- Right: language toggle + burger -->
+    <div class="header__actions">
+      <div class="header__lang-toggle">
+        <button
+          class="header__lang-btn"
+          [class.header__lang-btn--active]="langService.currentLang() === 'en'"
+          (click)="langService.setLanguage('en')"
+        >
+          EN
+        </button>
+        <button
+          class="header__lang-btn"
+          [class.header__lang-btn--active]="langService.currentLang() === 'de'"
+          (click)="langService.setLanguage('de')"
+        >
+          DE
+        </button>
+      </div>
 
-    <!-- Burger (mobile) -->
-    <button
-      class="header__burger"
-      (click)="toggleMenu()"
-      [class.header__burger--open]="isMenuOpen()"
-      aria-label="Open menu"
-    >
-      <span></span><span></span><span></span>
-    </button>
+      <button
+        class="header__burger"
+        (click)="toggleMenu()"
+        [class.header__burger--open]="isMenuOpen()"
+        [attr.aria-label]="t().nav.openMenu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 
   @if (isMenuOpen()) {

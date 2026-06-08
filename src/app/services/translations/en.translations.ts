@@ -2,10 +2,13 @@ import { Translations } from './translations.interface';
 
 export const en: Translations = {
   nav: {
+    home: 'Home',
     aboutMe: 'About me',
     skills: 'Skills',
     projects: 'Projects',
     contact: 'Contact',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
   },
 
   hero: {
@@ -118,7 +121,9 @@ export const en: Translations = {
     messagePlaceholder: 'Hello Atahar, I am interested in...',
     privacyText: "I've read the ",
     privacyLink: 'privacy policy',
+    privacySuffix: ' and agree to the processing of my data as outlined.',
     submitBtn: 'Say Hello :)',
+    sendAnother: 'Send another',
     successMsg: 'Your message was sent successfully. I will get back to you soon!',
     errorMsg: 'Something went wrong. Please try again later.',
   },
@@ -132,12 +137,14 @@ export const en: Translations = {
     email: 'Email',
     imprint: 'Imprint',
     privacy: 'Privacy',
+    backToTop: 'Back to top',
   },
 
   errors: {
     required: 'This field is required.',
     email: 'Please enter a valid email address.',
     minLength: 'This field is too short.',
+    invalidName: 'Please enter a valid name.',
   },
 
   imprint: {

@@ -135,7 +135,7 @@
   &__preview-fallback-text {
     font-family: "Fira Code", monospace;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.2;
     color: rgba(255, 255, 255, 0.45);
     text-align: center;
@@ -525,7 +525,7 @@
     background: transparent;
     color: var(--text-primary);
     font-family: "Karla", sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
@@ -560,7 +560,7 @@
     border: none;
     background: none;
     font-family: "Karla", sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.2;
     color: var(--accent);
@@ -597,8 +597,8 @@
     &__grid {
       grid-template-columns: 1fr;
       grid-template-areas:
-        "right"
         "left"
+        "right"
         "footer";
       gap: 20px;
       padding-top: 2.5rem;
@@ -609,7 +609,7 @@
     }
 
     &__right {
-      display: none;
+      display: flex;
     }
 
     &__media {
@@ -693,7 +693,7 @@
     }
 
     &__tech-label {
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     &__actions {

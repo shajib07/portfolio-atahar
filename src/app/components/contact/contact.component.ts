@@ -10,6 +10,12 @@ import {
 } from '@angular/forms';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 import { LanguageService } from '../../services/language.service';
+import {
+  trimmedRequired,
+  trimmedMinLength,
+  validName,
+  trimmedEmail,
+} from '../../validators/form.validators';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -27,9 +33,12 @@ export class ContactComponent {
   status         = signal<FormStatus>('idle');
 
   form: FormGroup = this.fb.group({
-    name:    ['', [Validators.required, Validators.minLength(2)]],
-    email:   ['', [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]],
+    name: [
+      '',
+      [trimmedRequired, trimmedMinLength(2), validName],
+    ],
+    email: ['', [trimmedRequired, trimmedEmail]],
+    message: ['', [trimmedRequired, trimmedMinLength(20)]],
     privacy: [false, Validators.requiredTrue],
   });
 
@@ -39,9 +48,10 @@ export class ContactComponent {
   get privacyCtrl(): AbstractControl { return this.form.get('privacy')!; }
 
   getError(ctrl: AbstractControl): string {
-    if (ctrl.hasError('required'))   return this.t().errors.required;
-    if (ctrl.hasError('email'))      return this.t().errors.email;
-    if (ctrl.hasError('minlength'))  return this.t().errors.minLength;
+    if (ctrl.hasError('required'))      return this.t().errors.required;
+    if (ctrl.hasError('email'))         return this.t().errors.email;
+    if (ctrl.hasError('invalidName'))   return this.t().errors.invalidName;
+    if (ctrl.hasError('minlength'))     return this.t().errors.minLength;
     return '';
   }
 
@@ -50,6 +60,9 @@ export class ContactComponent {
   }
 
   onSubmit(): void {
+    this.trimFormValues();
+    this.form.updateValueAndValidity();
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -65,5 +78,14 @@ export class ContactComponent {
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private trimFormValues(): void {
+    for (const field of ['name', 'email', 'message'] as const) {
+      const ctrl = this.form.get(field);
+      if (ctrl && typeof ctrl.value === 'string') {
+        ctrl.setValue(ctrl.value.trim());
+      }
+    }
   }
 }

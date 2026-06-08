@@ -29,7 +29,7 @@
       >
 
       <a
-        href="https://linkedin.com"
+        href="https://www.linkedin.com"
         target="_blank"
         rel="noopener noreferrer"
         class="footer__link"
@@ -41,6 +41,8 @@
       }}</a>
 
       <a routerLink="/imprint" class="footer__link">{{ t().footer.imprint }}</a>
+
+      <a routerLink="/privacy" class="footer__link">{{ t().footer.privacy }}</a>
     </nav>
   </div>
 
@@ -48,7 +50,7 @@
   <button
     class="footer__top-btn"
     (click)="scrollToTop()"
-    aria-label="Back to top"
+    [attr.aria-label]="t().footer.backToTop"
   >
     <svg
       width="18"

@@ -39,11 +39,26 @@ export class HeaderComponent {
 
   scrollToSection(id: string): void {
     this.closeMenu();
-    const el = document.getElementById(id);
-    if (!el) return;
-    const offset = 72;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+
+    const scroll = (): void => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const offset = 72;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    };
+
+    const path = this.router.url.split('?')[0] || '/';
+    const onHome = path === '/' || path === '';
+
+    if (onHome) {
+      scroll();
+      return;
+    }
+
+    void this.router.navigateByUrl('/').then(() => {
+      requestAnimationFrame(() => scroll());
+    });
   }
 
   /** Logo: go home and scroll to top (or only scroll when already on home). */

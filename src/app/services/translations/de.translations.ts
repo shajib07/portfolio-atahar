@@ -2,10 +2,13 @@ import { Translations } from './translations.interface';
 
 export const de: Translations = {
   nav: {
+    home: 'Startseite',
     aboutMe: 'Über mich',
     skills: 'Fähigkeiten',
     projects: 'Projekte',
     contact: 'Kontakt',
+    openMenu: 'Menü öffnen',
+    closeMenu: 'Menü schließen',
   },
 
   hero: {
@@ -118,7 +121,10 @@ export const de: Translations = {
     messagePlaceholder: 'Hallo Atahar, ich interessiere mich für...',
     privacyText: 'Ich habe die ',
     privacyLink: 'Datenschutzerklärung',
+    privacySuffix:
+      ' gelesen und stimme der Verarbeitung meiner Daten wie beschrieben zu.',
     submitBtn: 'Sag Hallo :)',
+    sendAnother: 'Noch eine senden',
     successMsg: 'Deine Nachricht wurde erfolgreich gesendet. Ich melde mich bald!',
     errorMsg: 'Etwas ist schiefgelaufen. Bitte versuche es später noch einmal.',
   },
@@ -132,12 +138,14 @@ export const de: Translations = {
     email: 'E-Mail',
     imprint: 'Impressum',
     privacy: 'Datenschutz',
+    backToTop: 'Nach oben',
   },
 
   errors: {
     required: 'Dieses Feld ist erforderlich.',
     email: 'Bitte gib eine gültige E-Mail-Adresse ein.',
     minLength: 'Dieses Feld ist zu kurz.',
+    invalidName: 'Bitte gib einen gültigen Namen ein.',
   },
 
   imprint: {

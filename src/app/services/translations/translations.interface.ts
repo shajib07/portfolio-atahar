@@ -1,8 +1,11 @@
 export interface NavTranslations {
+  home: string;
   aboutMe: string;
   skills: string;
   projects: string;
   contact: string;
+  openMenu: string;
+  closeMenu: string;
 }
 
 export interface HeroTranslations {
@@ -76,7 +79,9 @@ export interface ContactTranslations {
   messagePlaceholder: string;
   privacyText: string;
   privacyLink: string;
+  privacySuffix: string;
   submitBtn: string;
+  sendAnother: string;
   successMsg: string;
   errorMsg: string;
 }
@@ -90,12 +95,14 @@ export interface FooterTranslations {
   email: string;
   imprint: string;
   privacy: string;
+  backToTop: string;
 }
 
 export interface ErrorTranslations {
   required: string;
   email: string;
   minLength: string;
+  invalidName: string;
 }
 
 export interface ImprintTranslations {

@@ -121,6 +121,26 @@
       [attr.aria-labelledby]="'project-dialog-title'"
       (click)="$event.stopPropagation()"
     >
+      <button
+        #closeBtn
+        type="button"
+        class="projects-modal__close"
+        (click)="closeModal()"
+        [attr.aria-label]="t().projects.closeDialog"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
       <div class="projects-modal__grid">
         <div class="projects-modal__left">
           <div class="projects-modal__left-header">
@@ -154,25 +174,6 @@
         </div>
 
         <div class="projects-modal__right">
-          <button
-            #closeBtn
-            type="button"
-            class="projects-modal__close"
-            (click)="closeModal()"
-            [attr.aria-label]="t().projects.closeDialog"
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
           <div class="projects-modal__media">
             @if (!previewFailed()) {
               <img
