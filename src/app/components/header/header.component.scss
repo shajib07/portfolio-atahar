@@ -198,7 +198,7 @@
     &__nav {
       position: fixed;
       top: 0;
-      right: -100%;
+      right: 0;
       width: min(280px, 80vw);
       height: 100dvh;
       background: var(--bg-card);
@@ -207,19 +207,32 @@
       justify-content: flex-start;
       padding: 80px 32px 40px;
       gap: 24px;
-      transition: right 200ms ease;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        transform 200ms ease,
+        visibility 0s linear 200ms;
       z-index: 1001;
       border-left: 1px solid rgba(74, 222, 128, 0.12);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
 
       &--open {
-        right: 0;
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition:
+          transform 200ms ease,
+          visibility 0s linear 0s;
       }
     }
 
     &__close {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      align-items: center;
+      justify-content: center;
       position: absolute;
       top: 22px;
       right: 22px;
@@ -227,20 +240,18 @@
       border: none;
       cursor: pointer;
       padding: 4px;
+      color: rgba(255, 255, 255, 0.82);
+      transition: color 100ms ease;
 
-      span {
-        display: block;
-        width: 20px;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.75);
-
-        &:first-child {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-        &:last-child {
-          transform: rotate(-45deg) translate(5px, -5px);
-        }
+      &:hover {
+        color: var(--accent);
       }
+    }
+
+    &__close-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
     }
 
     &__link {

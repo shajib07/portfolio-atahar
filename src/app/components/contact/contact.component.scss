@@ -146,7 +146,9 @@
     left: 0;
     font-size: 1rem;
     color: #f87171;
-    white-space: nowrap;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   /* ---- Privacy ---- */
@@ -318,5 +320,10 @@
 @media (max-width: 480px) {
   .contact {
     padding: 72px 0;
+
+    &__error {
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
   }
 }
