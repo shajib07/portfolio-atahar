@@ -23,16 +23,22 @@
 
   &__track {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Grid stack: every slide shares one cell, so the row grows to the tallest
+       card and `align-items: stretch` makes them all that exact height. This
+       keeps every testimonial the same size regardless of text length, at any
+       viewport width or language. */
+    display: grid;
+    justify-items: center;
+    align-items: stretch;
     min-height: 260px;
     margin: 0 auto;
     max-width: 100%;
   }
 
   &__slide {
-    position: absolute;
+    grid-area: 1 / 1; // stack all slides in the same grid cell
+    display: flex;
+    flex-direction: column;
     background: #3dcfb64d;
     border: 1px solid #3dcfb6;
     border-radius: 32px;
@@ -40,12 +46,12 @@
     box-sizing: border-box;
     max-width: min(560px, calc(100% - 24px));
     width: 100%;
+    min-height: 340px;
     transition:
       opacity 0.35s ease,
       transform 0.35s ease;
 
     &.slide--active {
-      position: relative;
       background: #3dcfb64d;
       border: 1px solid #3dcfb6;
       opacity: 1;
@@ -84,8 +90,17 @@
     font-size: 3.5rem;
     color: var(--accent);
     line-height: 0.7;
-    margin-bottom: 20px;
     letter-spacing: -0.05em;
+
+    &--open {
+      margin-bottom: 20px;
+    }
+
+    /* Closing mark sits at the end of the quote, mirrored to the right. */
+    &--close {
+      align-self: flex-end;
+      margin-top: 12px;
+    }
   }
 
   &__text {
@@ -103,6 +118,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-top: auto;
   }
 
   &__divider {
@@ -186,9 +202,11 @@
     &__slide {
       padding: 28px 24px;
 
+      // Hidden but kept in the grid (not `display:none`) so they still size the
+      // shared row -> the visible card stays the same height across slides.
       &.slide--prev,
       &.slide--next {
-        display: none;
+        opacity: 0;
       }
     }
   }

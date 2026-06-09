@@ -60,8 +60,8 @@ export const en: Translations = {
         description:
           'A Slack-inspired real-time team messenger built with Angular. Create channels, exchange direct messages, and collaborate with authentication powered by Firebase.',
         image: 'assets/img/projects/join.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
+        githubUrl: 'https://github.com/c44n/join',
+        liveUrl: 'https://join-3158.developerakademie.net/angular-projects/join/',
       },
       {
         name: 'El Pollo Loco',
@@ -69,17 +69,8 @@ export const en: Translations = {
         description:
           'Jump, run and throw game based on object-oriented approach. Help Pepe to find coins and tabasco salsa to fight against the crazy hen.',
         image: 'assets/img/projects/elpolloloco.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
-      },
-      {
-        name: 'DA Bubble',
-        tech: ['Angular', 'Firebase', 'TypeScript'],
-        description:
-          'A responsive chat application with channels and threads, built to practice scalable Angular architecture and real-time data with Firebase.',
-        image: 'assets/img/projects/dabubble.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
+        githubUrl: 'https://github.com/shajib07/elpolloloco-js',
+        liveUrl: 'https://mdataharhossain.developerakademie.net/elpolloloco-js/',
       },
     ],
   },

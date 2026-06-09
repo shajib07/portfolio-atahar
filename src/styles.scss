@@ -31,7 +31,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) prevents horizontal scroll without creating a
+     scroll container, which would otherwise break the sticky header. */
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -40,7 +42,7 @@ body {
   font-weight: 400;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   line-height: 1.6;
 }
@@ -49,7 +51,7 @@ app-root {
   display: block;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ---- Typography ---- */
@@ -112,12 +114,15 @@ img {
   font-weight: 700; // Bold
   font-style: normal;
 
-  font-size: 4rem; // 64px
+  // Fluid size: scales down on small screens so long words (e.g. the German
+  // "zusammenarbeiten") never overflow / get clipped on the right.
+  font-size: clamp(1.75rem, 8vw, 4rem); // 28px → 64px
   line-height: 1; // 100%
   letter-spacing: -0.03em; // -3%
 
   color: #3dcfb6;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .section-description {
@@ -177,7 +182,7 @@ img {
 /* ---- Legal pages (imprint / privacy): diagonal green wash (matches hero) ---- */
 main.legal {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   isolation: isolate;
 
   &::before {

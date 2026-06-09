@@ -50,6 +50,9 @@ pnpm-debug.log*
 *.lcov
 .nyc_output
 
+
+.claude/ 
+
 # Logs and misc
 *.log
 testem.log

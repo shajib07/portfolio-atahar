@@ -12,12 +12,12 @@ export const de: Translations = {
   },
 
   hero: {
-    role: 'Frontend Entwickler',
+    role: 'Frontend-Entwickler',
     checkWork: 'Meine Arbeit',
     contactMe: 'Kontakt',
     availableLabel: 'Verfügbar für Remote-Arbeit',
     ticker:
-      'Verfügbar für Remote-Arbeit  •  Frontend Entwickler  •  Angular Experte  •  Offen für neue Möglichkeiten  •  ',
+      'Verfügbar für Remote-Arbeit  •  Frontend-Entwickler  •  Angular Experte  •  Offen für neue Möglichkeiten  •  ',
   },
 
   about: {
@@ -60,8 +60,8 @@ export const de: Translations = {
         description:
           'Ein Slack-inspiriertes Echtzeit-Team-Messenger mit Angular. Kanäle anlegen, Direktnachrichten austauschen und zusammenarbeiten – mit Authentifizierung über Firebase.',
         image: 'assets/img/projects/join.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
+        githubUrl: 'https://github.com/c44n/join',
+        liveUrl: 'https://join-3158.developerakademie.net/angular-projects/join/',
       },
       {
         name: 'El Pollo Loco',
@@ -69,17 +69,8 @@ export const de: Translations = {
         description:
           'Jump-’n’-Run- und Wurfspiel mit objektorientiertem Ansatz. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen.',
         image: 'assets/img/projects/elpolloloco.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
-      },
-      {
-        name: 'DA Bubble',
-        tech: ['Angular', 'Firebase', 'TypeScript'],
-        description:
-          'Eine responsive Chat-Anwendung mit Kanälen und Threads – gebaut, um skalierbare Angular-Architektur und Echtzeitdaten mit Firebase zu üben.',
-        image: 'assets/img/projects/dabubble.jpg',
-        githubUrl: 'https://github.com',
-        liveUrl: 'https://github.com',
+        githubUrl: 'https://github.com/shajib07/elpolloloco-js',
+        liveUrl: 'https://mdataharhossain.developerakademie.net/elpolloloco-js/',
       },
     ],
   },
@@ -95,7 +86,7 @@ export const de: Translations = {
       {
         text: 'Ich hatte das Glück, bei der Developer Akademie mit Atahar zusammenzuarbeiten. Er blieb immer ruhig, sorgte dafür, dass unser Team erfolgreich war, war kompetent und angenehm in der Zusammenarbeit.',
         author: 'T. Schulz',
-        role: 'Frontend Entwickler',
+        role: 'Frontend-Entwickler',
       },
       {
         text: 'Die Zusammenarbeit mit Atahar war eine Freude. Er hat sinnvolle Lösungen eingebracht und immer klar kommuniziert. Ein echter Teamplayer und ein fähiger Entwickler.',

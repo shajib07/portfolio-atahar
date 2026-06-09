@@ -10,9 +10,11 @@
       <div class="experience__track">
         @for (item of t().experience.items; track item.author; let i = $index) {
           <div class="experience__slide" [class]="getSlideClass(i)">
-            <!-- Large quote mark -->
-            <span class="experience__quote" aria-hidden="true">&ldquo;&ldquo;</span>
+            <!-- Opening quote mark -->
+            <span class="experience__quote experience__quote--open" aria-hidden="true">&ldquo;</span>
             <p class="experience__text">{{ item.text }}</p>
+            <!-- Closing quote mark (mirrored, at the end) -->
+            <span class="experience__quote experience__quote--close" aria-hidden="true">&rdquo;</span>
             <div class="experience__author">
               <span class="experience__divider"></span>
               <span class="experience__name">{{ item.author }} – {{ item.role }}</span>
