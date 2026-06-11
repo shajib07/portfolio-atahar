@@ -1,76 +1,7 @@
 <header class="header" [class.header--scrolled]="isScrolled()">
   <div class="container header__inner">
-    <!-- Left: logo -->
-    <a
-      class="header__logo"
-      href="/"
-      (click)="onLogoClick($event)"
-      [attr.aria-label]="t().nav.home"
-    >
-      <img
-        src="assets/img/logo.png"
-        alt="Atahar Hossain logo"
-        class="header__logo-img"
-      />
-    </a>
-
-    <!-- Centre: nav links -->
-    <nav class="header__nav" [class.header__nav--open]="isMenuOpen()">
-      <!-- Mobile close -->
-      <button
-        class="header__close"
-        (click)="closeMenu()"
-        [attr.aria-label]="t().nav.closeMenu"
-      >
-        <svg
-          class="header__close-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M6 6l12 12" />
-          <path d="M18 6L6 18" />
-        </svg>
-      </button>
-
-      <button class="header__link" (click)="scrollToSection('about')">
-        {{ t().nav.aboutMe }}
-      </button>
-      <button class="header__link" (click)="scrollToSection('skills')">
-        {{ t().nav.skills }}
-      </button>
-      <button class="header__link" (click)="scrollToSection('projects')">
-        {{ t().nav.projects }}
-      </button>
-      <button class="header__link" (click)="scrollToSection('contact')">
-        {{ t().nav.contact }}
-      </button>
-
-      <!-- Language toggle inside mobile drawer -->
-      <div class="header__lang-toggle header__lang-toggle--mobile">
-        <button
-          class="header__lang-btn"
-          [class.header__lang-btn--active]="langService.currentLang() === 'en'"
-          (click)="langService.setLanguage('en'); closeMenu()"
-        >
-          EN
-        </button>
-        <button
-          class="header__lang-btn"
-          [class.header__lang-btn--active]="langService.currentLang() === 'de'"
-          (click)="langService.setLanguage('de'); closeMenu()"
-        >
-          DE
-        </button>
-      </div>
-    </nav>
-
-    <!-- Right: language toggle + burger -->
-    <div class="header__actions">
+    <!-- Left cluster (desktop) / dropdown card (mobile): language toggle + nav -->
+    <div class="header__menu" [class.header__menu--open]="isMenuOpen()">
       <div class="header__lang-toggle">
         <button
           class="header__lang-btn"
@@ -88,15 +19,46 @@
         </button>
       </div>
 
-      <button
-        class="header__burger"
-        (click)="toggleMenu()"
-        [class.header__burger--open]="isMenuOpen()"
-        [attr.aria-label]="t().nav.openMenu"
-      >
-        <span></span><span></span><span></span>
-      </button>
+      <nav class="header__nav">
+        <button class="header__link" (click)="scrollToSection('about')">
+          {{ t().nav.aboutMe }}
+        </button>
+        <button class="header__link" (click)="scrollToSection('skills')">
+          {{ t().nav.skills }}
+        </button>
+        <button class="header__link" (click)="scrollToSection('projects')">
+          {{ t().nav.projects }}
+        </button>
+        <button class="header__link" (click)="scrollToSection('contact')">
+          {{ t().nav.contact }}
+        </button>
+      </nav>
     </div>
+
+    <!-- Logo (right on desktop, left on mobile) -->
+    <a
+      class="header__logo"
+      href="/"
+      (click)="onLogoClick($event)"
+      [attr.aria-label]="t().nav.home"
+    >
+      <img
+        src="assets/img/logo.png"
+        alt="Atahar Hossain logo"
+        class="header__logo-img"
+      />
+    </a>
+
+    <!-- Burger (mobile only) -->
+    <button
+      class="header__burger"
+      (click)="toggleMenu()"
+      [class.header__burger--open]="isMenuOpen()"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="isMenuOpen() ? t().nav.closeMenu : t().nav.openMenu"
+    >
+      <span></span><span></span><span></span>
+    </button>
   </div>
 
   @if (isMenuOpen()) {

@@ -3,11 +3,18 @@
     <!-- Logo + info -->
     <div class="footer__brand">
       <div class="footer__logo">
-        <img
-          src="assets/img/logo.png"
-          alt="Atahar Hossain logo"
-          class="footer__logo-img"
-        />
+        <a
+          class="footer__logo-link"
+          href="/"
+          (click)="onLogoClick($event)"
+          [attr.aria-label]="t().nav.home"
+        >
+          <img
+            src="assets/img/logo.png"
+            alt="Atahar Hossain logo"
+            class="footer__logo-img"
+          />
+        </a>
         <div>
           <span class="footer__role">{{ t().footer.role }}</span>
           <span class="footer__location">{{ t().footer.location }}</span>
@@ -45,22 +52,4 @@
       <a routerLink="/privacy" class="footer__link">{{ t().footer.privacy }}</a>
     </nav>
   </div>
-
-  <!-- Back to top -->
-  <button
-    class="footer__top-btn"
-    (click)="scrollToTop()"
-    [attr.aria-label]="t().footer.backToTop"
-  >
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <path d="M12 19V5M5 12l7-7 7 7" />
-    </svg>
-  </button>
 </footer>

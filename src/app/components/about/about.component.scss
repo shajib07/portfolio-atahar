@@ -11,9 +11,29 @@
   /* ---- Photo ---- */
   &__photo-wrap {
     position: relative;
+    isolation: isolate;
     margin-bottom: 2.5rem; // 40px
     max-width: 440px;
     width: 100%;
+
+    /* Diagonal green stripe decoration peeking out on the left of the photo
+       (matches the design). */
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -26px;
+      top: 34px;
+      bottom: 34px;
+      width: 66px;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(61, 207, 182, 0.5) 0,
+        rgba(61, 207, 182, 0.5) 2px,
+        transparent 2px,
+        transparent 9px
+      );
+    }
   }
 
   &__photo {

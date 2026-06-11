@@ -1,7 +1,10 @@
 .hero {
   position: relative;
-  height: calc(100vh - var(--header-height));
-  min-height: 500px;
+  /* Full viewport height — the fixed header overlays the top of the hero so
+     the above-the-fold section is always 100vh and the green gradient flows
+     through the header. */
+  height: 100vh;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -25,10 +28,15 @@
     animation: glowPulse 4s ease-in-out infinite;
   }
 
-  /* ---- Left scroll indicator ---- */
+  /* ---- Left scroll indicator + rail line ---- */
   &__scroll {
     position: absolute;
-    left: 36px;
+    /* Aligns to the content edge (1440px bound) on wide screens instead of
+       sticking to the far viewport edge. */
+    left: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
+    /* Spans from mid-hero down to just past the ticker so the rail line can
+       run all the way down (matching the design). */
+    top: 50%;
     bottom: 72px;
     display: flex;
     flex-direction: column;
@@ -57,14 +65,15 @@
   }
 
   &__scroll-line {
+    flex: 1;
     width: 1px;
-    height: 64px;
+    min-height: 56px;
+    margin-top: 12px;
     background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.2),
-      transparent
+      rgba(61, 207, 182, 0.5),
+      rgba(255, 255, 255, 0.12)
     );
-    margin-top: 8px;
   }
 
   /* ---- Centre content ---- */
@@ -119,6 +128,8 @@
   }
 
   &__btn {
+    position: relative;
+    overflow: hidden;
     padding: 11px 32px;
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.38);
@@ -140,15 +151,40 @@
     }
   }
 
-  /* ---- Right panel ---- */
+  /* Marquee label: on hover the text scrolls through the pill (design effect).
+     A second copy (::after) is absolutely positioned so it doesn't widen the
+     button, giving a seamless loop. */
+  &__btn-label {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 100%;
+      padding-left: 2rem;
+    }
+  }
+
+  &__btn:hover &__btn-label {
+    animation: heroBtnMarquee 4s linear infinite;
+  }
+
+  /* ---- Right panel (email + socials + rail line) ---- */
   &__right {
     position: absolute;
-    right: 36px;
-    top: 50%;
-    transform: translateY(-50%);
+    /* Aligns to the content edge (1440px bound) on wide screens. */
+    right: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
+    /* Spans from the upper area down to just past the ticker so the rail line
+       below the socials runs all the way down (matching the design). */
+    top: 26%;
+    bottom: 72px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 14px;
     z-index: 2;
     animation: fadeLeft 0.7s ease 0.45s both;
@@ -190,6 +226,19 @@
     &:hover {
       color: var(--accent);
     }
+  }
+
+  /* Right rail line running down from below the socials to past the ticker. */
+  &__line-down {
+    flex: 1;
+    width: 1px;
+    min-height: 56px;
+    margin-top: 6px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.28),
+      rgba(255, 255, 255, 0.05)
+    );
   }
 
   /* ---- Ticker ---- */
@@ -239,12 +288,12 @@
 @keyframes fadeLeft {
   from {
     opacity: 0;
-    transform: translate(20px, -50%);
+    transform: translateX(20px);
   }
 
   to {
     opacity: 1;
-    transform: translate(0, -50%);
+    transform: translateX(0);
   }
 }
 
@@ -286,10 +335,28 @@
   }
 }
 
+@keyframes heroBtnMarquee {
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__btn:hover .hero__btn-label {
+    animation: none;
+  }
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
   .hero {
     &__scroll {
+      display: none;
+    }
+
+    /* Side rail line is dropped on smaller screens; the email + socials stay
+       centred within the right panel via justify-content (set on the base). */
+    &__line-down {
       display: none;
     }
 
@@ -302,12 +369,13 @@
 @media (max-width: 640px) {
   .hero {
     height: auto;
-    min-height: calc(100dvh - var(--header-height));
+    min-height: 100dvh;
     padding-bottom: 32px;
 
     &__center {
       flex: 1;
-      padding: clamp(24px, 6vw, 40px) 16px clamp(16px, 4vw, 24px);
+      /* Extra top padding clears the fixed header / burger on mobile. */
+      padding: clamp(64px, 14vw, 96px) 16px clamp(16px, 4vw, 24px);
     }
 
     &__right {

@@ -119,7 +119,12 @@
               <span class="contact__checkbox-custom"></span>
               <span class="contact__privacy-text">
                 {{ t().contact.privacyText }}
-                <a routerLink="/privacy" class="contact__privacy-link">
+                <a
+                  routerLink="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact__privacy-link"
+                >
                   {{ t().contact.privacyLink }}
                 </a>{{ t().contact.privacySuffix }}
               </span>

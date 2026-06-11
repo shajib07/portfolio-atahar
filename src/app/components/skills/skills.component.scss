@@ -24,6 +24,11 @@
     border-radius: 30px;
     border: 1px solid #3dcfb6;
 
+    /* Same translucent panel fill as the About card so both read as cards. */
+    background: #3dcfb61a;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
     gap: 2.5rem;
   }
 

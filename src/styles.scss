@@ -14,7 +14,9 @@
   --text-muted: #64748b;
   --border: rgba(74, 222, 128, 0.25);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --max-width: 1200px;
+  /* Content is limited to 1440px on large screens (per the design /
+     checklist) and centered, with even ~120px side gutters at that width. */
+  --max-width: 1440px;
   --header-height: 72px;
   --transition: 100ms ease;
 }
@@ -90,7 +92,10 @@ img {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  /* Side gutters scale with the viewport up to ~120px, so at 1440px the
+     content area is ~1200px (matching the design) and stays centered on
+     wider screens. */
+  padding: 0 clamp(24px, 8.33vw, 120px);
 
   @media (max-width: 480px) {
     padding: 0 16px;
@@ -184,6 +189,8 @@ main.legal {
   position: relative;
   overflow-x: clip;
   isolation: isolate;
+  /* Clear the fixed header so the page title isn't hidden underneath it. */
+  padding-top: calc(var(--header-height) + 32px);
 
   &::before {
     content: "";

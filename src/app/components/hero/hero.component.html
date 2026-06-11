@@ -17,10 +17,14 @@
     <h1 class="hero__name">Atahar Hossain</h1>
     <div class="hero__cta">
       <button class="hero__btn" (click)="scrollToSection('projects')">
-        {{ t().hero.checkWork }}
+        <span class="hero__btn-label" [attr.data-text]="t().hero.checkWork">{{
+          t().hero.checkWork
+        }}</span>
       </button>
       <button class="hero__btn" (click)="scrollToSection('contact')">
-        {{ t().hero.contactMe }}
+        <span class="hero__btn-label" [attr.data-text]="t().hero.contactMe">{{
+          t().hero.contactMe
+        }}</span>
       </button>
     </div>
   </div>
@@ -45,13 +49,15 @@
         </svg>
       </a>
     </div>
+    <span class="hero__line-down"></span>
   </aside>
 
   <!-- Bottom ticker -->
   <div class="hero__ticker" aria-hidden="true">
     <div class="hero__ticker-track">
-      <span>{{ t().hero.ticker }}</span>
-      <span>{{ t().hero.ticker }}</span>
+      @for (_ of tickerRepeat; track $index) {
+        <span>{{ t().hero.ticker }}</span>
+      }
     </div>
   </div>
 

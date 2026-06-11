@@ -13,6 +13,13 @@ export class HeroComponent {
   langService = inject(LanguageService);
   t = this.langService.translations;
 
+  /**
+   * The ticker is one looping track translated by -50%, so it must hold an even
+   * number of identical copies. Eight copies keep the strip filled even on very
+   * wide / ultrawide monitors, so the marquee never shows an empty gap.
+   */
+  tickerRepeat = Array.from({ length: 8 });
+
   scrollToSection(id: string): void {
     const el = document.getElementById(id);
     if (!el) return;

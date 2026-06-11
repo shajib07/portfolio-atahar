@@ -1,18 +1,39 @@
 .header {
-  position: sticky;
+  /* Fixed (not sticky) so it overlays the hero and the green hero gradient
+     flows continuously through the header — no separate dark header bar. */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  width: 100%;
   height: var(--header-height);
   background: transparent;
-  transition:
-    background 100ms ease,
-    box-shadow 100ms ease;
 
-  &--scrolled {
-    background: rgba(10, 26, 20, 0.92);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 1px 0 rgba(74, 222, 128, 0.12);
+  /* Scrim that fades out toward the bottom (no hard edge). It is fully
+     transparent at the very top (so the gradient shows through) and fades in
+     once scrolled, to keep the nav legible over the page content below. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 22, 16, 0.92) 0%,
+      rgba(8, 22, 16, 0.5) 50%,
+      rgba(8, 22, 16, 0) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  &--scrolled::before {
+    opacity: 1;
   }
 
   &__inner {
@@ -23,12 +44,11 @@
     gap: 24px;
   }
 
-  /* ---- Right actions (lang + burger) ---- */
-  &__actions {
+  /* ---- Left cluster: language toggle + nav ---- */
+  &__menu {
     display: flex;
     align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
+    gap: 28px;
   }
 
   /* ---- Language toggle ---- */
@@ -47,7 +67,7 @@
     border: none;
     color: var(--accent);
     font-family: "Space Mono", monospace;
-    font-size: 1rem; // 16px
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 4px 11px;
@@ -67,17 +87,11 @@
     }
   }
 
-  &__lang-toggle--mobile {
-    display: none;
-  }
-
-  /* ---- Nav (centre) ---- */
+  /* ---- Nav links ---- */
   &__nav {
     display: flex;
     align-items: center;
     gap: 28px;
-    flex: 1;
-    justify-content: center;
   }
 
   &__link {
@@ -92,6 +106,7 @@
     letter-spacing: -0.03em;
     cursor: pointer;
     padding: 4px 0;
+    white-space: nowrap;
     transition: color 100ms ease;
     position: relative;
 
@@ -106,50 +121,37 @@
       transition: width 100ms ease;
     }
 
-    &:hover {
-      color: #ffffff;
-      &::after {
-        width: 100%;
-      }
+    &:hover::after {
+      width: 100%;
     }
   }
 
-  &__close {
-    display: none;
-  }
-
-  /* ---- Logo (left) ---- */
+  /* ---- Logo (right on desktop) ---- */
   &__logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     flex-shrink: 0;
     color: var(--accent);
-    transition: opacity 100ms ease;
 
-    &:hover {
-      opacity: 0.8;
+    .header__logo-img {
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    &:hover .header__logo-img {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
   }
 
   &__logo-img {
-    width: 120px; // adjust size
+    width: 120px;
     height: auto;
     object-fit: contain;
   }
 
-  .header__logo-img {
-    transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
-  }
-
-  .header__logo:hover .header__logo-img {
-    transform: scale(1.05);
-    opacity: 0.9;
-  }
-
-  /* ---- Burger ---- */
+  /* ---- Burger (mobile only) ---- */
   &__burger {
     display: none;
     flex-direction: column;
@@ -158,28 +160,23 @@
     border: none;
     cursor: pointer;
     padding: 4px;
+    /* Stays above the dropdown card + overlay so the X is crisp and tappable. */
+    position: relative;
+    z-index: 1002;
 
     span {
       display: block;
-      width: 22px;
+      width: 24px;
       height: 2px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 2px;
-      transition:
-        transform 100ms ease,
-        opacity 100ms ease;
+      transition: background 120ms ease;
     }
 
-    &--open {
-      span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      span:nth-child(2) {
-        opacity: 0;
-      }
-      span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
+    /* Stays a hamburger while the menu is open (matches the design) — the card
+       is dismissed by tapping the burger again or the backdrop. */
+    &--open span {
+      background: var(--accent);
     }
   }
 
@@ -187,88 +184,84 @@
   &__overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 999;
   }
 }
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
+/* ---- Responsive: mobile dropdown card ----
+   Switches early (960px) because the German nav labels + logo need the room. */
+@media (max-width: 960px) {
   .header {
-    &__nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(280px, 80vw);
-      height: 100dvh;
-      background: var(--bg-card);
+    /* Mobile bar = logo (left) + burger (right) */
+    &__logo {
+      order: -1;
+    }
+
+    &__logo-img {
+      width: 104px;
+    }
+
+    &__burger {
+      display: flex;
+    }
+
+    /* Nav + language toggle collapse into a compact rounded card that drops
+       down from the top-right, matching the design's mobile menu. */
+    &__menu {
+      position: absolute;
+      top: calc(var(--header-height) - 6px);
+      right: clamp(12px, 4vw, 20px);
+      z-index: 1001;
+
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-start;
-      padding: 80px 32px 40px;
-      gap: 24px;
-      transform: translateX(100%);
+      gap: 20px;
+      width: min(248px, 72vw);
+      padding: 24px 26px;
+
+      background: #0d1f18;
+      border: 1px solid rgba(61, 207, 182, 0.25);
+      border-radius: 22px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+
+      transform-origin: top right;
+      transform: scale(0.92) translateY(-8px);
+      opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition:
-        transform 200ms ease,
-        visibility 0s linear 200ms;
-      z-index: 1001;
-      border-left: 1px solid rgba(74, 222, 128, 0.12);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
+        opacity 160ms ease,
+        transform 160ms ease,
+        visibility 0s linear 160ms;
 
       &--open {
-        transform: translateX(0);
+        opacity: 1;
         visibility: visible;
+        transform: scale(1) translateY(0);
         pointer-events: auto;
         transition:
-          transform 200ms ease,
+          opacity 160ms ease,
+          transform 160ms ease,
           visibility 0s linear 0s;
       }
     }
 
-    &__close {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: 22px;
-      right: 22px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      color: rgba(255, 255, 255, 0.82);
-      transition: color 100ms ease;
-
-      &:hover {
-        color: var(--accent);
-      }
+    /* Links above, language toggle below — as in the design card */
+    &__nav {
+      order: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      width: 100%;
     }
 
-    &__close-icon {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
+    &__lang-toggle {
+      order: 2;
     }
 
     &__link {
-      font-size: 1rem;
-      width: 100%;
-      text-align: left;
-    }
-
-    &__actions .header__lang-toggle {
-      display: none;
-    }
-    &__lang-toggle--mobile {
-      display: flex;
-      margin-top: 8px;
-    }
-    &__burger {
-      display: flex;
+      font-size: 1.125rem;
     }
   }
 }

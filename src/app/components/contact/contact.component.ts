@@ -32,13 +32,21 @@ export class ContactComponent {
   t              = this.langService.translations;
   status         = signal<FormStatus>('idle');
 
+  // Text fields validate on blur (not while typing) per the checklist; the
+  // privacy checkbox stays on 'change' so the submit button enables instantly.
   form: FormGroup = this.fb.group({
     name: [
       '',
-      [trimmedRequired, trimmedMinLength(2), validName],
+      {
+        validators: [trimmedRequired, trimmedMinLength(2), validName],
+        updateOn: 'blur',
+      },
     ],
-    email: ['', [trimmedRequired, trimmedEmail]],
-    message: ['', [trimmedRequired, trimmedMinLength(20)]],
+    email: ['', { validators: [trimmedRequired, trimmedEmail], updateOn: 'blur' }],
+    message: [
+      '',
+      { validators: [trimmedRequired, trimmedMinLength(20)], updateOn: 'blur' },
+    ],
     privacy: [false, Validators.requiredTrue],
   });
 
@@ -56,7 +64,8 @@ export class ContactComponent {
   }
 
   showError(ctrl: AbstractControl): boolean {
-    return ctrl.invalid && (ctrl.dirty || ctrl.touched);
+    // Only after the field has been left (blurred) — never mid-typing.
+    return ctrl.invalid && ctrl.touched;
   }
 
   onSubmit(): void {
