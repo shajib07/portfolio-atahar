@@ -13,23 +13,55 @@
     position: relative;
     isolation: isolate;
     margin-bottom: 2.5rem; // 40px
-    max-width: 440px;
+    max-width: 665px;
     width: 100%;
+    padding:
+      var(--about-photo-panel-top) var(--about-photo-panel-right)
+      var(--about-photo-panel-bottom) var(--about-photo-panel-left);
 
-    /* Diagonal green stripe decoration peeking out on the left of the photo
-       (matches the design). */
+    --about-photo-panel-top: clamp(1.5rem, 2.6vw, 2.3rem);
+    --about-photo-panel-right: clamp(1.25rem, 3vw, 2.75rem);
+    --about-photo-panel-bottom: clamp(3.25rem, 6vw, 5.125rem);
+    --about-photo-panel-left: clamp(3rem, 6vw, 5.25rem);
+    --about-photo-hatch-width: clamp(1.75rem, 4vw, 2.5rem);
+    --about-photo-hatch-height: clamp(1.5rem, 3vw, 1.75rem);
+
+    /* Diagonal hatch peeks out from behind the photo as one stable L-shape. */
     &::before {
       content: "";
       position: absolute;
-      z-index: -1;
-      left: -26px;
-      top: 34px;
-      bottom: 34px;
-      width: 66px;
+      z-index: 0;
+      left: calc(
+        var(--about-photo-panel-left) - var(--about-photo-hatch-width)
+      );
+      top: var(--about-photo-panel-top);
+      bottom: calc(
+        var(--about-photo-panel-bottom) - var(--about-photo-hatch-height)
+      );
+      width: var(--about-photo-hatch-width);
       background-image: repeating-linear-gradient(
         45deg,
-        rgba(61, 207, 182, 0.5) 0,
-        rgba(61, 207, 182, 0.5) 2px,
+        rgba(61, 207, 182, 0.55) 0,
+        rgba(61, 207, 182, 0.55) 2px,
+        transparent 2px,
+        transparent 9px
+      );
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      left: var(--about-photo-panel-left);
+      right: var(--about-photo-panel-right);
+      bottom: calc(
+        var(--about-photo-panel-bottom) - var(--about-photo-hatch-height)
+      );
+      height: var(--about-photo-hatch-height);
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(61, 207, 182, 0.55) 0,
+        rgba(61, 207, 182, 0.55) 2px,
         transparent 2px,
         transparent 9px
       );
@@ -37,6 +69,8 @@
   }
 
   &__photo {
+    position: relative;
+    z-index: 1;
     aspect-ratio: 1 / 1;
     width: 100%;
     border-radius: 30px;
@@ -148,10 +182,13 @@
       gap: 48px;
     }
 
+    &__photo-wrap {
+      margin-inline: auto;
+      max-width: 520px;
+    }
+
     &__photo {
-      aspect-ratio: 4/3;
-      max-width: 360px;
-      margin: 0 auto;
+      aspect-ratio: 1 / 1;
     }
 
     &__content-wrap {
